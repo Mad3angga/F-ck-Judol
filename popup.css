@@ -1,0 +1,768 @@
+:root {
+  --primary: #3563E9;
+  --primary-dark: #2050d3;
+  --primary-gradient: linear-gradient(135deg, #3563E9 0%, #2050d3 100%);
+  --danger: #EF4444;
+  --danger-dark: #d92f2f;
+  --danger-gradient: linear-gradient(135deg, #FF6B6B 0%, #EF4444 100%);
+  --text: #1E293B;
+  --text-light: #64748B;
+  --border: #E2E8F0;
+  --background: #FFFFFF;
+  --background-light: #F8FAFC;
+  --background-gradient: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  --shadow: rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --success: #10B981;
+  --success-gradient: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+  --warning: #F59E0B;
+  --warning-gradient: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+  --info: #3B82F6;
+  --info-gradient: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+  background: var(--background-gradient);
+  line-height: 1.5;
+  width: 360px;
+  height: 500px;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--background);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: var(--primary-gradient);
+  color: white;
+  border-bottom: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  margin-right: 12px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background: white;
+  padding: 3px;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+}
+
+.content {
+  position: relative;
+  z-index: 5;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--background);
+  max-height: calc(100% - 120px);
+  height: auto;
+  min-height: 300px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--background-light);
+  padding: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border);
+  position: relative;
+  z-index: 5;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+textarea {
+  width: 100%;
+  height: 70px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  transition: all 0.2s ease;
+  background-color: white;
+  position: relative;
+  z-index: 5;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(53, 99, 233, 0.15);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.primary {
+  background: var(--primary-gradient);
+  color: white;
+}
+
+.primary:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(53, 99, 233, 0.3);
+  transform: translateY(-1px);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(53, 99, 233, 0.2);
+}
+
+.danger {
+  background: var(--danger-gradient);
+  color: white;
+  padding: 12px 20px;
+}
+
+.danger:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  transform: translateY(-1px);
+}
+
+.danger:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(239, 68, 68, 0.2);
+}
+
+.status-container {
+  padding: 10px 12px;
+  background-color: var(--background-light);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  position: relative;
+  z-index: 5;
+}
+
+#scanStatus {
+  font-size: 14px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* Scrollbar styling */
+.spam-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.spam-list::-webkit-scrollbar-track {
+  background: var(--background-light);
+  border-radius: var(--radius);
+}
+
+.spam-list::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: var(--radius);
+  opacity: 0.8;
+}
+
+.spam-list::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Select all container */
+.select-all-container {
+  padding: 12px 16px;
+  background: var(--background-gradient);
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.select-all-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.select-all-container label {
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background-color: var(--border);
+  margin: 0;
+}
+
+/* Comment item */
+.comment-item {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: background-color 0.2s ease;
+  position: relative;
+  z-index: 5;
+}
+
+.comment-item:hover {
+  background-color: rgba(53, 99, 233, 0.05);
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+.comment-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.comment-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.comment-text {
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.comment-author {
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.comment-author::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  border-radius: 50%;
+}
+
+.spam-reason {
+  font-size: 11px;
+  color: white;
+  background: var(--warning-gradient);
+  padding: 3px 8px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 4px;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(245, 158, 11, 0.3);
+}
+
+.delete-button-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+#confirmDelete {
+  display: none;
+  position: relative;
+  z-index: 5;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100%;
+  opacity: 1;
+  visibility: visible;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2);
+}
+
+/* Add a class to show the delete button */
+#confirmDelete.visible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Add a pulsing effect to the delete button to make it more noticeable */
+@keyframes deleteButtonPulse {
+  0% {
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+  }
+  100% {
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2);
+  }
+}
+
+#confirmDelete.visible {
+  animation: deleteButtonPulse 2s infinite;
+}
+
+.footer {
+  margin-top: auto;
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  background: var(--background-light);
+  position: relative;
+  z-index: 10;
+}
+
+.footer p {
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* Loading animation for the delete button */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.btn svg[stroke-dasharray] {
+  animation: spin 2s linear infinite;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-subtitle {
+  font-size: 12px;
+  opacity: 0.8;
+  font-weight: 400;
+  margin-top: -2px;
+}
+
+.label-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.label-with-icon svg {
+  color: var(--primary);
+}
+
+.input-hint {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.input-note {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 8px;
+  padding: 8px;
+  background-color: rgba(53, 99, 233, 0.08);
+  border-left: 3px solid var(--primary);
+  border-radius: 4px;
+}
+
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background-color: var(--background-light);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+.status-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.footer-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.footer-dots span {
+  width: 4px;
+  height: 4px;
+  background-color: var(--text-light);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* Add shimmer effect to buttons */
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.primary {
+  background: var(--primary-gradient);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.3) 40%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Add a subtle pattern to the background */
+.container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(var(--border) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Add a subtle glow effect to the header */
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  background: linear-gradient(to bottom, rgba(53, 99, 233, 0.1), transparent);
+  pointer-events: none;
+}
+
+/* Add a subtle animation to the scan button */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#scan:not(:disabled):hover {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+.comment-timestamp {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+.additional-reasons {
+  font-size: 10px;
+  color: var(--primary);
+  margin-top: 2px;
+  cursor: help;
+  display: inline-block;
+}
+
+/* Add animation for the spin animation */
+.spin-animation {
+  animation: spin 1.5s linear infinite;
+  display: inline-block;
+}
+
+/* Add transition for opacity changes */
+#scanStatus, .btn, .comment-item {
+  transition: opacity 0.2s ease;
+}
+
+/* Add styles for the timestamp in comments */
+.comment-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+}
+
+.comment-timestamp::before {
+  content: '•';
+  color: var(--text-light);
+}
+
+.deleting {
+  position: relative;
+  overflow: hidden;
+}
+
+.deleting::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    rgba(239, 68, 68, 0.1) 25%, 
+    rgba(239, 68, 68, 0.2) 50%, 
+    rgba(239, 68, 68, 0.1) 75%);
+  background-size: 200% 200%;
+  animation: shimmer 1.5s infinite;
+  pointer-events: none;
+}
+
+.deleting-status {
+  color: var(--danger);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.deleting-status::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--danger);
+  animation: pulse 1s infinite alternate;
+}
+
+/* Make sure the button text is visible */
+.btn span, .btn svg {
+  position: relative;
+  z-index: 2;
+}
+
+/* Fix button hover effect */
+.btn:hover::before {
+  left: 100%;
+}
+
+/* Fix button pointer events */
+.btn, .btn * {
+  pointer-events: auto;
+}
+
+/* Ensure the container pattern doesn't block interaction */
+.container::after {
+  pointer-events: none;
+}
+
+/* Fix for any potential overlapping elements */
+.header, .content, .footer {
+  position: relative;
+}
+
+/* Make sure buttons stand out */
+.btn.primary {
+  box-shadow: 0 4px 8px rgba(53, 99, 233, 0.2);
+}
+
+.btn.danger {
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2);
+}
+
+/* Reset any accidental pointer-events: none */
+body, html, button, input, textarea, .comment-item, .select-all-container {
+  pointer-events: auto;
+}
+
+.comments-container {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 5;
+}
+
+/* Spam list styles */
+.spam-list {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background-light);
+  display: none; /* Will be changed to block via JavaScript */
+  padding: 0;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  z-index: 5;
+  margin-bottom: 10px;
+  visibility: visible;
+  opacity: 1;
+  min-height: 50px;
+}
+
+.spam-list.visible {
+  display: block !important;
+}
+
+/* Scrollbar styling */
+.spam-list::-webkit-scrollbar {
+  width: 8px;
+}
